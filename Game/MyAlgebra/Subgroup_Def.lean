@@ -28,45 +28,38 @@ instance {H : Subgroup G} : Group H where
   inv_mul := by intros; ext; apply inv_mul
   mul_inv := by intros; ext; apply mul_inv
 
-/--
-1. H ≠ ∅
-2. for all x, y ∈ H, x * (y⁻¹) ∈ H
--/
-def Subgroup_Criterion (S : Set G) (he : ∃ (s : G), s ∈ S)
-(hc : ∀ (x y : G), x ∈ S → y ∈ S → (x * (y⁻¹)) ∈ S)
-: Subgroup G where
+/-- The three closure conditions that make a set a subgroup. -/
+def IsSubgroupSet (S : Set G) : Prop :=
+  1 ∈ S ∧ (∀ a b, a ∈ S → b ∈ S → a * b ∈ S) ∧ (∀ a, a ∈ S → a⁻¹ ∈ S)
+
+/-- Package verified closure conditions as a subgroup with the chosen carrier. -/
+def Subgroup.ofSet (S : Set G) (hS : IsSubgroupSet S) : Subgroup G where
   carrier := S
-  one_mem := by
+  one_mem := hS.1
+  mul_closure := hS.2.1 _ _
+  inv_closure := hS.2.2 _
+
+/-- A nonempty set closed under `x * y⁻¹` is a subgroup. -/
+def Subgroup_Criterion (S : Set G) (he : ∃ s, s ∈ S)
+    (hc : ∀ x y, x ∈ S → y ∈ S → x * y⁻¹ ∈ S) : Subgroup G := by
+  have h1 : 1 ∈ S := by
     obtain ⟨s, hs⟩ := he
-    rw [← mul_inv s]
-    apply hc <;> exact hs
-  inv_closure := by
-    intro a
-    have hc2 := hc
-    rw [← one_mul (a⁻¹)]
-    apply hc2 1 a
-    have h1 : 1 ∈ S := by
-      obtain ⟨s, hs⟩ := he
-      rw [← mul_inv s]
-      apply hc <;> exact hs
-    exact h1
-  mul_closure := by
-    intro a b ha hb
-    have hc3 := hc
-    have hc4 := hc
-    specialize hc3 a (b⁻¹)
-    rw [← inv_inv b] at hc3
-    have hf : b ∈ S → b⁻¹ ∈ S := by
-      intro hb
-      rw [←one_mul (b⁻¹)]
-      apply hc4 1 b
-      have h1 : 1 ∈ S := by
-        obtain ⟨s, hs⟩ := he
-        rw [← mul_inv s]
-        apply hc <;> exact hs
-      exact h1
-      exact hb
-    apply hf at hb
-    apply hc3 at ha
-    apply ha at hb
-    exact hb
+    have h := hc s s hs hs
+    rw [mul_inv] at h
+    exact h
+  have hi : ∀ a, a ∈ S → a⁻¹ ∈ S := by
+    intro a ha
+    have h := hc 1 a h1 ha
+    rw [one_mul] at h
+    exact h
+  apply Subgroup.ofSet S
+  constructor
+  · exact h1
+  constructor
+  · intro a b ha hb
+    have h := hc a b⁻¹ ha (hi b hb)
+    rw [← inv_inv] at h
+    exact h
+  · exact hi
+
+end MyAlgebra
