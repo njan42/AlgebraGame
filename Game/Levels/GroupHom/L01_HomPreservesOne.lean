@@ -1,4 +1,4 @@
-import Game.Levels.Group
+import Game.Levels.Functions
 import Game.MyAlgebra.Group_Hom_Def
 
 World "GroupHom"
@@ -9,7 +9,9 @@ Title "Homomorphisms preserve the identity"
 namespace MyAlgebra
 
 Introduction "
-  Here we'll prove that a homomorphism preserves the identity element.
+  In Functions, you studied injectivity, surjectivity, and composition. We now ask
+  for a different property: preserving the group operation. A homomorphism need
+  not be injective or surjective. Here we'll prove that it preserves the identity element.
 
   We define a homomorphism as a function `f` that satisfies the following property:
   `∀ a b : G, f (a * b) = f a * f b`
