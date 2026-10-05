@@ -19,7 +19,7 @@ For a group element `g` and a natural number `n`, we have
 TheoremDoc MyAlgebra.gpow_neg_mpow as "gpow_neg_mpow" in "Group Power"
 Statement gpow_neg_mpow {G} [Group G] (g : G) (x : ℕ) :
   g ^ (-(x : ℤ)) = (g ^ x)⁻¹ := by
-  Hint "Do a case split on `n` using `cases n with | zero | succ`."
+  Hint "Do a case split on `{x}` using `cases {x} with | zero => ... | succ n => ...`."
   cases x with
   | zero =>
     rw [Int.ofNat_zero]
@@ -62,7 +62,7 @@ TheoremDoc MyAlgebra.gpow_ofNat as "gpow_ofNat" in "Group Power"
 TheoremDoc MyAlgebra.Group.inv_mul as "inv_mul" in "Group Power"
 
 /--
-`MyAlgebra.inv_mpow` is a proof that `(a^n)⁻¹ = a^(-n)`.
+`inv_mpow` states `(g ^ n)⁻¹ = (g⁻¹) ^ n` for natural `n`.
 -/
 TheoremDoc MyAlgebra.inv_mpow as "inv_mpow" in "Group Power"
 end Group_Power_Axioms
@@ -172,7 +172,12 @@ TheoremDoc Int.ofNat_eq_coe as "Int.ofNat_eq_coe" in "Int"
 -/
 TheoremDoc Int.mul_sub as "Int.mul_sub" in "Int"
 
-NewTheorem Nat.cast_one Int.neg_zero MyAlgebra.gpow_one sub_eq_add_neg MyAlgebra.gpow_zero Int.ofNat_zero Int.sub_eq_add_neg MyAlgebra.gpow_negSucc Int.mul_add Int.mul_one MyAlgebra.gpow_ofNat Int.zero_sub Int.add_sub_assoc Int.negSucc_coe' MyAlgebra.inv_mpow Int.negSucc_eq Int.neg_add_cancel_right Int.negSucc_sub_one Int.ofNat_add_out Int.ofNat_one Int.add_assoc Nat.cast_add Int.neg_add Int.add_comm Int.ofNat_eq_coe Int.mul_sub MyAlgebra.gpow_neg_mpow
+/--
+Use `induction z using Int.induction_on` for integer induction: prove the zero, successor, and predecessor cases.
+-/
+TheoremDoc Int.induction_on as "Int.induction_on" in "Int"
+
+NewTheorem Int.induction_on Nat.cast_one Int.neg_zero MyAlgebra.gpow_one sub_eq_add_neg MyAlgebra.gpow_zero Int.ofNat_zero Int.sub_eq_add_neg MyAlgebra.gpow_negSucc Int.mul_add Int.mul_one MyAlgebra.gpow_ofNat Int.zero_sub Int.add_sub_assoc Int.negSucc_coe' MyAlgebra.inv_mpow Int.negSucc_eq Int.neg_add_cancel_right Int.negSucc_sub_one Int.ofNat_add_out Int.ofNat_one Int.add_assoc Nat.cast_add Int.neg_add Int.add_comm Int.ofNat_eq_coe Int.mul_sub
 
 /--
 `Int.ofNat n` casts a natural number `n` to an integer.
@@ -191,10 +196,7 @@ DefinitionDoc MyAlgebra.gpow as "gpow" in "Group Power"
 
 NewDefinition Int.ofNat Int.negSucc MyAlgebra.gpow
 
-/--
-The `Int.induction_on` tactic performs induction on an integer `z`.
--/
-TacticDoc Int.induction_on
+
 
 /--
 The `match` tactic performs pattern matching on an expression.
@@ -206,4 +208,4 @@ The `cases` tactic performs case analysis on an inductive type.
 -/
 TacticDoc «cases»
 
-NewTactic Int.induction_on «match» «cases»
+NewTactic «match» «cases»

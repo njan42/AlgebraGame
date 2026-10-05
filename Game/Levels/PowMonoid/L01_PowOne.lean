@@ -51,4 +51,17 @@ TheoremDoc Nat.mul_zero as "Nat.mul_zero" in "Nat"
 -/
 TheoremDoc Nat.mul_succ as "Nat.mul_succ" in "Nat"
 
-NewTheorem Nat.add_zero Nat.zero_add Nat.add_succ Nat.mul_zero Nat.mul_succ MyAlgebra.mpow_one
+
+/-- `mpow_zero m` states `m ^ 0 = 1`. -/
+TheoremDoc MyAlgebra.mpow_zero as "mpow_zero" in "Monoid Power"
+
+/-- `mpow_succ_right m` states `m ^ (n + 1) = m ^ n * m`. -/
+TheoremDoc MyAlgebra.mpow_succ_right as "mpow_succ_right" in "Monoid Power"
+
+/-- `induction n with | zero => ... | succ n ih => ...` proves a statement
+for every natural number, using the preceding case as the hypothesis `ih`. -/
+TacticDoc induction
+
+NewTactic induction
+
+NewTheorem Nat.add_zero Nat.zero_add Nat.add_succ Nat.mul_zero Nat.mul_succ MyAlgebra.mpow_zero MyAlgebra.mpow_succ_right

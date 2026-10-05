@@ -1,4 +1,4 @@
-import Game.MyAlgebra.Group_Def
+import Mathlib.Tactic
 
 namespace MyAlgebra
 

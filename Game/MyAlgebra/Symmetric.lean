@@ -1,4 +1,5 @@
 import Game.MyAlgebra.AddMul_Group_Def
+import Game.MyAlgebra.Group_Def
 
 namespace MyAlgebra
 
@@ -13,13 +14,11 @@ instance (n : ℕ) : AbstactGroup (Symmetric n) where
   inv := Equiv.symm
   inv_mul := by
     intro f
-    dsimp [One]
     rw [←Equiv.coe_inj]
     funext x
     rw [Equiv.symm_trans_self, Equiv.refl_apply]
   mul_inv := by
     intro f
-    dsimp [One]
     rw [←Equiv.coe_inj]
     funext x
     rw [Equiv.self_trans_symm, Equiv.refl_apply]

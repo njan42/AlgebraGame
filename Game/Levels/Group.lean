@@ -18,8 +18,8 @@ Introduction "
   #### Identity Axiom
   There is an element `1 ∈ G` such that
 
-    - mul_one : ∀ g : G, 1 * g = g
-    - one_mul : ∀ g : G, g * 1 = g
+    - one_mul : ∀ g : G, 1 * g = g
+    - mul_one : ∀ g : G, g * 1 = g
 
   The element 1 is called the identity element of G.
 

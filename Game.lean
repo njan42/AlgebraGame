@@ -14,21 +14,27 @@ Introduction
 # Welcome to the Algebra Game
 #### An introduction to algebraic structures.
 
-In this game, we will build the basic theory of Groups, Rings, and Fields from scratch. We'll do this by solving levels of a computer puzzle game called Lean.
+Explore abstract algebra by proving facts about monoids, groups, powers, homomorphisms, and rings.
+This game is a work in progress: the current worlds introduce group theory and the first ring laws.
 
-It's recommend that you play the [Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/NNG4) to learn the basics of Lean before playing this game.
+Start with the [Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/NNG4)
+to learn rewriting, implications, and induction. New algebra concepts are introduced as you play.
 "
 
 Info "
-Uses Lean4.40
+Built with Lean 4 and the Lean Game Server. This is an introductory course under development.
 "
 
 /-! Information to be displayed on the servers landing page. -/
 Languages "English"
 CaptionShort "Introduction to basic algebra"
-CaptionLong "In this game you will learn the basics of algebra"
+CaptionLong "An introduction to abstract algebra after the Natural Number Game. Currently covers monoids, groups, powers, homomorphisms, examples, and initial ring laws."
 -- Prerequisites "" -- add this if your game depends on other games
 -- CoverImage "images/cover.png"
+
+-- Ring proofs use the additive versions of cancellation learned in Group.
+Dependency Group → Ring
+Dependency Group → «Group Examples»
 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 MakeGame

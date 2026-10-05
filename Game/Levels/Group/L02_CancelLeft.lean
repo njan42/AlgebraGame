@@ -27,3 +27,5 @@ Statement mul_left_cancel {G} (g : G) {g1 g2 : G} [Group G] : g * g1 = g * g2 â†
   exact q
 
 Conclusion "Congrats!"
+
+NewTheorem MyAlgebra.Group.mul_inv

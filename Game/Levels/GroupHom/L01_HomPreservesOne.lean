@@ -14,7 +14,7 @@ Introduction "
   We define a homomorphism as a function `f` that satisfies the following property:
   `∀ a b : G, f (a * b) = f a * f b`
 
-  And we can access this property by using `f.hom` where `f.hom a b : ∀ a b : G, f (a * b) = f a * f b`.
+  And we can access this property by using `f.hom` where `f.hom a b : f (a * b) = f a * f b`.
 
   We can also use the homomorphism as a function by using `f` directly. Example: `f a`.
 "
@@ -32,25 +32,4 @@ Statement hom_preserves_one {G H} [Group G] [Group H] (f : GroupHom G H) : f 1 =
   apply mul_right_cancel (f 1)
   rw [one_mul]
   rw [←q]
--- Statement hom_preserves_one [Group G] [Group H] (f : G → H) (h : is_mul_hom f) : f 1 = 1 := by
---   have q := h 1 1
---   rw [one_mul] at q
---   apply mul_right_cancel (f 1)
---   rw [one_mul]
---   rw [←q]
-
-
 Conclusion "Congrats!"
-
-/--
-`MyAlgebra.oneFunction G H` is the trivial group homomorphism from group `G` to group `H`,
-mapping every element `g : G` to the identity element `1 : H`.
--/
-DefinitionDoc MyAlgebra.oneFunction as "oneFunction" in "GroupHom"
-
-/--
-`id x` is the identity function, which returns `x` itself.
--/
-DefinitionDoc id as "id" in "GroupHom"
-
-NewDefinition MyAlgebra.oneFunction id

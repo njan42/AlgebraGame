@@ -53,12 +53,29 @@ variable {n : ℕ}
 /--
 `Dihedral_id` is a proof that the identity element of the dihedral group `D_n` is `r 0`.
 -/
-TheoremDoc MyAlgebra.Dihedral_id as "Dihedral_id" in "Group Examples"
+TheoremDoc MyAlgebra.Dihedral.Dihedral_id as "Dihedral_id" in "Group Examples"
 Statement Dihedral_id (n : ℕ) (a : Dihedral n) : ∃ b : Dihedral n, mul a b = a ∧ mul b a = a := by
   use r 0
   Hint "Use the definition of multiplication in the dihedral group."
-  induction a with
+  cases a with
   | r i => simp [mul]
   | sr i => simp [mul]
 
 Conclusion "Congrats!"
+
+/--
+`sr i` represents a reflection element in the dihedral group `D_n`, where `i` is an integer modulo `n`.
+-/
+DefinitionDoc MyAlgebra.Dihedral.sr as "sr" in "Group Examples"
+
+/--
+`r i` represents a rotation element in the dihedral group `D_n`, where `i` is an integer modulo `n`.
+-/
+DefinitionDoc MyAlgebra.Dihedral.r as "r" in "Group Examples"
+
+/--
+`mul a b` represents the multiplication of elements `a` and `b` in the dihedral group.
+-/
+DefinitionDoc MyAlgebra.Dihedral.mul as "Dihedral.mul" in "Group Examples"
+
+NewDefinition MyAlgebra.Dihedral.sr MyAlgebra.Dihedral.r MyAlgebra.Dihedral.mul

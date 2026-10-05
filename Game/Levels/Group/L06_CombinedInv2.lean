@@ -13,12 +13,12 @@ We should expect it to follow the same pattern, and we can use induction to prov
 
 To make this a bit more formal, we defined a function `prod_list` that takes a list of elements of a group `G` and returns their product. We also define a function `prod_list_inv` that takes a list of elements of a group `G` and returns the product of the inverses of the elements in reverse order.
 
-For example, if `l = [g1, g2, g3]` then `prod_list l = g1 ⬝ g2 ⬝ g3` and `prod_list_inv l = g3⁻¹ ⬝ g2⁻¹ ⬝ g1⁻¹`."
+For example, if `l = [g1, g2, g3]` then `prod_list l = g1 * g2 * g3` and `prod_list_inv l = g3⁻¹ * g2⁻¹ * g1⁻¹`."
 
 /--
   Given a list of elements of a group `G`, `prod_list` computes their product.
 
-  If the list is empty, it returns the empty product - the identity element `e` of the group.
+  If the list is empty, it returns the empty product - the identity element `1` of the group.
 -/
 DefinitionDoc MyAlgebra.prod_list as "prod_list"
 def prod_list {G : Type} [Group G]: List G → G
@@ -28,7 +28,7 @@ def prod_list {G : Type} [Group G]: List G → G
 /--
   Given a list of elements of a group `G`, `prod_list_inv` computes the product of the elements in the list in reverse order, with each element inverted.
 
-  If the list is empty, it returns the empty product - the identity element `e` of the group.
+  If the list is empty, it returns the empty product - the identity element `1` of the group.
 -/
 DefinitionDoc MyAlgebra.prod_list_inv as "prod_list_inv"
 def prod_list_inv {G : Type} [Group G] : List G → G

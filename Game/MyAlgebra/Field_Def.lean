@@ -2,7 +2,8 @@ import Game.MyAlgebra.Ring_Def
 
 namespace MyAlgebra
 
-class Field (F : Type) extends CommRing F, Inv F :=
+class Field (F : Type) extends CommRing F, Inv F where
+  zero_ne_one : (0 : F) ≠ 1
   mul_inv_cancel : ∀ a : F, a ≠ 0 → a * a⁻¹ = 1
   inv_mul_cancel : ∀ a : F, a ≠ 0 → a⁻¹ * a = 1
 

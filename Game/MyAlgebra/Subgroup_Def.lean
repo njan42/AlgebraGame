@@ -14,7 +14,7 @@ variable {G : Type} [Group G]
 
 instance : Coe (Subgroup G) (Set G) := ⟨λ H ↦ H.carrier⟩
 instance : CoeSort (Subgroup G) (Type _) := ⟨λ H ↦ H.carrier⟩
-instance : Membership G (Subgroup G) := ⟨λ g H ↦ g ∈ H.carrier⟩
+instance : Membership G (Subgroup G) := ⟨λ H g ↦ g ∈ H.carrier⟩
 
 attribute [coe] Subgroup.carrier
 

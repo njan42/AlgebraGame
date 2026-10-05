@@ -64,21 +64,17 @@ TheoremDoc sub_eq_neg_add as "sub_eq_neg_add" in "Group Examples"
 -/
 TheoremDoc sub_eq_add_neg as "sub_eq_add_neg" in "Group Examples"
 
-NewTheorem Int.zero_add Fin.zero_add sub_self sub_eq_neg_add sub_eq_add_neg
+/-- `Int.add_zero a` states `a + 0 = a` for integers. -/
+TheoremDoc Int.add_zero as "Int.add_zero" in "Int"
 
-/--
-`sr i` represents a reflection element in the dihedral group `D_n`, where `i` is an integer modulo `n`.
--/
-DefinitionDoc MyAlgebra.Dihedral.sr as "sr" in "Group Examples"
+/-- `Fin.add_zero a` states `a + 0 = a` for modular representatives. -/
+TheoremDoc Fin.add_zero as "Fin.add_zero" in "Fin"
 
-/--
-`r i` represents a rotation element in the dihedral group `D_n`, where `i` is an integer modulo `n`.
--/
-DefinitionDoc MyAlgebra.Dihedral.r as "r" in "Group Examples"
+/-- `cases x with ...` splits a proof into the constructors of `x`.
+Here `cases m` separates modulus zero from positive moduli. -/
+TacticDoc «cases»
 
-/--
-`mul a b` represents the multiplication of elements `a` and `b` in the dihedral group.
--/
-DefinitionDoc MyAlgebra.Dihedral.mul as "Dihedral.mul" in "Group Examples"
+NewTactic «cases»
+NewDefinition ZMod
 
-NewDefinition ZMod MyAlgebra.Dihedral.sr MyAlgebra.Dihedral.r MyAlgebra.Dihedral.mul
+NewTheorem Int.zero_add Int.add_zero Fin.zero_add Fin.add_zero sub_self sub_eq_neg_add sub_eq_add_neg

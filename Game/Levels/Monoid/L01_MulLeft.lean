@@ -8,7 +8,7 @@ Title "Left Multiplication"
 
 namespace MyAlgebra
 
-Introduction "Just to get us warmed up, let's create some lemmas for multiplication. We wil use the rewrite function to create a basic proof that multiplication is a function. In other words, if `m1 = m2`, then `m * m1 = m * m2` for any `m`. This could be useful if you want to use calc blocks later on."
+Introduction "Just to get us warmed up, let's create some lemmas for multiplication. We will use the rewrite tactic to create a basic proof that multiplication is a function. In other words, if `m1 = m2`, then `m * m1 = m * m2` for any `m`. This could be useful if you want to use calc blocks later on."
 
 /--
 `mul_left` is a proof that if `m1 = m2`, then `m * m1 = m * m2` - basically `m * _` is a function.
@@ -72,13 +72,13 @@ TacticDoc exact
 
 
 /--
-`simp` is a magic tactic that tries lots of different things to simplify your goal.
+`simp` rewrites using known simplification rules. Use `simp only [h₁, h₂]` to choose the rules explicitly.
 -/
 TacticDoc simp
 
 
 /--
-`repeat t` repeatedly applies the tactic `t` to the goal. You don't need to use thistactic, it just speeds things up sometimes.
+`repeat t` repeatedly applies the tactic `t` to the goal. You don't need to use this tactic, it just speeds things up sometimes.
 -/
 TacticDoc «repeat»
 
@@ -88,12 +88,12 @@ If `h : X = Y` and there are several `X`s in the goal, then `nth_rewrite 3 [h]` 
 TacticDoc nth_rewrite
 
 /--
-The `Iff.intro` tactic is used to prove a goal of the form `P ↔ Q`. It splits the goal into two subgoals: `P → Q` and `Q → P`.
+The theorem `Iff.intro` is used to prove a goal of the form `P ↔ Q`. It splits the goal into two subgoals: `P → Q` and `Q → P`.
 -/
-TacticDoc Iff.intro
+TheoremDoc Iff.intro as "Iff.intro" in "Basic"
 
 /--
-The `constructor` tactic can be used to prove goals that are inductive types with a single constructor. For example, it can be used to prove `P ↔ Q` by proving `P → Q`, or to prove `P ∧ Q` by splitting the goal into proving `P` and `Q`.
+The `constructor` tactic can be used to prove goals that are inductive types with a single constructor. For example, it can be used to prove `P ↔ Q` by proving both `P → Q` and `Q → P`, or to prove `P ∧ Q` by splitting the goal into proving `P` and `Q`.
 -/
 TacticDoc «constructor»
 
@@ -108,20 +108,20 @@ TacticDoc nth_rw
 TacticDoc cases'
 
 /--
-`use h` is a tactic used to provide a proof of a type using construction.
+`use x` supplies a witness for an existential goal, such as `∃ x, P x`, and leaves `P x` to prove.
 -/
 TacticDoc use
 
-NewTactic rfl rw intro apply «have» obtain «calc» exact simp «repeat» nth_rewrite Iff.intro «constructor» nth_rw cases' use
+NewTactic rfl rw intro apply «have» obtain «calc» exact simp «repeat» nth_rewrite «constructor» nth_rw cases' use
 end Basic_Tactics
 
 section Monoid_Axioms
 /--
-`mul_one` is a proof that for all `m : M`, `1 * m = m` (Left Identity Axiom).
+`mul_one` states `m * 1 = m` (right identity).
 -/
 TheoremDoc mul_one as "mul_one" in "Monoid"
 /--
-`one_mul` is a proof that for all `m : M`, `m * 1 = m` (Right Identity Axiom).
+`one_mul` states `1 * m = m` (left identity).
 -/
 TheoremDoc one_mul as "one_mul" in "Monoid"
 
@@ -145,4 +145,4 @@ TheoremDoc And.right as "And.right" in "Basic"
 -/
 TheoremDoc And.intro as "And.intro" in "Basic"
 
-NewTheorem mul_one one_mul MyAlgebra.Semigroup.mul_assoc And.left And.right And.intro
+NewTheorem mul_one one_mul MyAlgebra.Semigroup.mul_assoc And.left And.right And.intro Iff.intro

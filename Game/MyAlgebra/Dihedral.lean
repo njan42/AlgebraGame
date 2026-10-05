@@ -16,5 +16,9 @@ def mul : Dihedral n → Dihedral n → Dihedral n
   | r i, sr j => sr (j - i)
   | sr i, r j => sr (i + j)
   | sr i, sr j => r (j - i)
-  instance : Mul (Dihedral n) where
-    mul := mul
+
+instance : Mul (Dihedral n) where
+  mul := mul
+
+end Dihedral
+end MyAlgebra

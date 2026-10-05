@@ -11,8 +11,8 @@ Introduction "
   #### Identity Axiom
   There is an element `1 ∈ M` such that
 
-    - mul_one : ∀ m : M, 1 * m = m
-    - one_mul : ∀ m : M, m * 1 = m
+    - one_mul : ∀ m : M, 1 * m = m
+    - mul_one : ∀ m : M, m * 1 = m
 
   The element 1 is called the identity element of M.
 
