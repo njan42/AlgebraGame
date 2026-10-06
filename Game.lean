@@ -6,6 +6,7 @@ import Game.Levels.Functions
 import Game.Levels.GroupHom
 import Game.Levels.Sets
 import Game.Levels.Subgroups
+import Game.Levels.KernelImage
 import Game.Levels.Ring
 import Game.Levels.GroupExamples
 
@@ -40,7 +41,7 @@ Dependency Group → Ring
 Dependency Group → «Group Examples»
 -- Functions prepares the notation and proof techniques used by homomorphisms.
 -- Sets then prepares images, kernels, and subgroups.
-Dependency Group → Functions → GroupHom → Sets → Subgroups
+Dependency Group → Functions → GroupHom → Sets → Subgroups → KernelImage
 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 MakeGame
