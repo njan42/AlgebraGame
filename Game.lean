@@ -8,6 +8,7 @@ import Game.Levels.Sets
 import Game.Levels.Subgroups
 import Game.Levels.KernelImage
 import Game.Levels.Cosets
+import Game.Levels.Lagrange
 import Game.Levels.Ring
 import Game.Levels.GroupExamples
 
@@ -44,7 +45,7 @@ Dependency Group → «Group Examples»
 -- Functions prepares the notation and proof techniques used by homomorphisms.
 -- Sets then prepares subgroups and the two branches studying maps and cosets.
 Dependency Group → Functions → GroupHom → Sets → Subgroups → KernelImage
-Dependency Subgroups → Cosets
+Dependency Subgroups → Cosets → Lagrange
 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 MakeGame
