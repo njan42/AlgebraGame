@@ -7,6 +7,7 @@ import Game.Levels.GroupHom
 import Game.Levels.Sets
 import Game.Levels.Subgroups
 import Game.Levels.KernelImage
+import Game.Levels.Cosets
 import Game.Levels.Ring
 import Game.Levels.GroupExamples
 
@@ -18,7 +19,8 @@ Introduction
 # Welcome to the Algebra Game
 #### An introduction to algebraic structures.
 
-Explore abstract algebra through monoids, groups, functions, sets, subgroups, powers, homomorphisms, and rings.
+Explore abstract algebra through monoids, groups, functions, sets, subgroups,
+cosets, powers, homomorphisms, and rings.
 This game is a work in progress: the current worlds introduce group theory and the first ring laws.
 
 Start with the [Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/NNG4)
@@ -40,8 +42,9 @@ CaptionLong "An introduction to abstract algebra after the Natural Number Game. 
 Dependency Group → Ring
 Dependency Group → «Group Examples»
 -- Functions prepares the notation and proof techniques used by homomorphisms.
--- Sets then prepares images, kernels, and subgroups.
+-- Sets then prepares subgroups and the two branches studying maps and cosets.
 Dependency Group → Functions → GroupHom → Sets → Subgroups → KernelImage
+Dependency Subgroups → Cosets
 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 MakeGame
