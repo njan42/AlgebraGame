@@ -9,6 +9,7 @@ import Game.Levels.Subgroups
 import Game.Levels.KernelImage
 import Game.Levels.Cosets
 import Game.Levels.Lagrange
+import Game.Levels.Normal
 import Game.Levels.Ring
 import Game.Levels.GroupExamples
 
@@ -48,4 +49,7 @@ Dependency Group → Functions → GroupHom → Sets → Subgroups → KernelIma
 Dependency Subgroups → Cosets → Lagrange
 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
+Dependency Cosets → Normal
+Dependency KernelImage → Normal
+
 MakeGame
