@@ -7,23 +7,22 @@ Title "Subtracting Integer Exponents"
 
 namespace MyAlgebra
 
-Introduction "We now prove the exponent law for subtraction:
-multiplying by the inverse of `g ^ y` corresponds to subtracting `y` in the exponent."
+Introduction "
+Subtraction of exponents corresponds to multiplying by an inverse.
+Combine the addition and negation laws to prove the subtraction law.
+"
 
-/--
-For any group element `g` and integers `x`, `y`, we have
-`g ^ x * (g ^ y)⁻¹ = g ^ (x - y)`.
--/
+/-- `gpow_sub g x y` states `g ^ x * (g ^ y)⁻¹ = g ^ (x - y)`. -/
 TheoremDoc MyAlgebra.gpow_sub as "gpow_sub" in "Group Power"
-@[simp]
-Statement gpow_sub {G} [Group G] (g : G) (x y : ℤ) :
-    (g ^ x) * (g ^ y)⁻¹ = g ^ (x - y) := by
-  Hint "Recall that `x - y = x + (-y)`."
-  Hint "Try rewriting `x - y` using `sub_eq_add_neg` and then apply the addition rule `gpow_add` and the negation rule `gpow_neg`."
-  -- First rewrite subtraction as addition with a negative exponent:
-  rw [sub_eq_add_neg]
-  -- Now use the addition and negation lemmas:
-  rw [← gpow_add]
-  rw [gpow_neg]
+Statement gpow_sub {G : Type} [Group G] (g : G) (x y : ℤ) :
+    g ^ x * (g ^ y)⁻¹ = g ^ (x - y) := by
+  Hint "`Int.sub_eq_add_neg x y` writes `x - y` as `x + (-y)`."
+  rw [Int.sub_eq_add_neg, ← gpow_add, gpow_neg]
 
-Conclusion "Nice! You’ve shown that a negative exponent in the second factor corresponds to subtracting exponents."
+/-- `Int.sub_eq_add_neg a b` states `a - b = a + (-b)`. -/
+TheoremDoc Int.sub_eq_add_neg as "Int.sub_eq_add_neg" in "Int"
+NewTheorem Int.sub_eq_add_neg
+
+Conclusion "Congrats!"
+
+end MyAlgebra

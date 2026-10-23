@@ -7,13 +7,14 @@ Title "Inverse of the Identity"
 
 namespace MyAlgebra
 
-Introduction "In this section, we will prove that the inverse of the identity element is the identity element itself."
+Introduction "
+What is the inverse of the identity? Check its two inverse products.
+"
 
 /--
-`inv_id` is a proof that the inverse of the identity is the identity.
+`inv_id` states `1 = 1⁻¹`. Use it backwards to simplify the inverse of `1`.
 -/
 TheoremDoc MyAlgebra.inv_id as "inv_id" in "Group"
--- @[to_additive]
 Statement inv_id {G} [Group G] : (1 : G) = (1 : G)⁻¹ := by
   apply inv_unique 1
 
@@ -21,5 +22,6 @@ Statement inv_id {G} [Group G] : (1 : G) = (1 : G)⁻¹ := by
   rw [mul_one]
   rw [one_mul]
 
-
 Conclusion "Congrats!"
+
+end MyAlgebra

@@ -13,27 +13,14 @@ World "Group"
 Title "Group World"
 
 Introduction "
-  A group consists of a set G together with a binary operation (`*`) satisfying the following axioms:
+A group is a monoid with an inverse `g⁻¹` for every element `g`.
+The monoid laws `mul_assoc`, `one_mul`, and `mul_one` still apply.
+The inverse laws are:
 
-  #### Identity Axiom
-  There is an element `1 ∈ G` such that
+- `inv_mul`: `g⁻¹ * g = 1`
+- `mul_inv`: `g * g⁻¹ = 1`
 
-    - one_mul : ∀ g : G, 1 * g = g
-    - mul_one : ∀ g : G, g * 1 = g
-
-  The element 1 is called the identity element of G.
-
-  #### Inverse Axiom
-  For every `g ∈ G` there is an element `h ∈ G` such that
-
-    - mul_inv : ∀ g : G, g * g⁻¹ = 1
-    - inv_mul : ∀ g : G, g⁻¹ * g = 1
-
-  The element `h` is denoted `g⁻¹` (written \"g\\inv\") and is called the inverse of g.
-
-  #### Associative Law
-  For all `g1, g2, g3 ∈ G`, the associative law holds:
-
-    - mul_assoc : ∀ g1 g2 g3 : G, (g1 * g2) * g3 = g1 * (g2 * g3)
-
+Type the inverse symbol with `\\inv`.
+We will prove cancellation and uniqueness of inverses, then study inverses of products.
+Multiplication may not necessarily be commutative.
 "

@@ -7,5 +7,8 @@ World "Group Examples"
 Title "Group Examples World"
 
 Introduction "
-  In this world, we will explore some examples of groups. We will see how the axioms of groups apply to these examples and how they can be used to prove properties about the groups.
+Let's apply the group laws to two examples: modular addition and polygon symmetries.
+The first uses `+`, identity `0`, and additive inverses.
+The second uses `*` to compose rotations and reflections.
+We will check identities and inverses using the operations in each example.
 "

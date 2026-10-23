@@ -11,10 +11,12 @@ World "Monoid Power"
 Title "Monoid Power World"
 
 Introduction "
-  A monoid consists of a set M together with a binary operation (`*`) we represent repeatedly multiplying an element by itself using `mpow` with the following definition:
+Powers repeat the monoid operation. We use `m ^ n` for natural-number exponents.
+The definition gives two rules:
 
-    - `mpow_zero`: `m ^ 0 = 1`
-    - `mpow_succ_right`: `m ^ (n + 1) = m ^ n * m`
+- `mpow_zero`: `m ^ 0 = 1`
+- `mpow_succ_right`: `m ^ (n + 1) = m ^ n * m`
 
-  They've also been added to `simp`
+Use these rules and the monoid laws to prove the familiar exponent laws.
+Some proofs use natural-number induction, as in the Natural Number Game.
 "

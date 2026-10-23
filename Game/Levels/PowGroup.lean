@@ -13,19 +13,19 @@ World "Group Power"
 Title "Group Power World"
 
 Introduction "
-  A group consists of a set G together with a binary operation (`*`) we represent repeatedly multiplying an element by itself using `gpow`:
+Group inverses let us extend powers to integer exponents.
+We keep the notation `g ^ n`, now with `n : ℤ`.
 
-  ```
-  def gpow {G : Type} [Group G] (x : G) : ℤ → G
-  | Int.ofNat n => mpow x n
-  | Int.negSucc n => mpow (x⁻¹) (n+1)
-  ```
-  To make it easier to work with, we've created the following lemmas:
-    - `gpow_ofNat`: `g ^ ↑n = g ^ n`
-    - `gpow_negSucc`: `g ^ (Int.negSucc n) = (g⁻¹) ^ (n+1)`
-    - `gpow_zero`: `g ^ (0 : ℤ) = 1`
-    - `gpow_one`: `g ^ (1 : ℤ) = g`
-    - `inv_mpow`: `(g ^ n)⁻¹ = (g⁻¹) ^ n`
+```
+def gpow {G : Type} [Group G] (x : G) : ℤ → G
+| Int.ofNat n => mpow x n
+| Int.negSucc n => mpow (x⁻¹) (n+1)
+```
 
-  They've also been added to `simp`
+- `gpow_zero`: `g ^ (0 : ℤ) = 1`
+- `gpow_succ`: `g ^ (n + 1) = g ^ n * g`
+- `gpow_neg_nat`: `g ^ (-(n : ℤ)) = (g⁻¹) ^ n` for natural `n`
+
+We will use these rules to prove addition, subtraction, and multiplication laws.
+Integer induction starts at zero and takes steps both up and down.
 "

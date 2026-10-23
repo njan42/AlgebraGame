@@ -8,7 +8,10 @@ Title "Left Multiplication"
 
 namespace MyAlgebra
 
-Introduction "Just to get us warmed up, let's create some lemmas for multiplication. We will use the rewrite tactic to create a basic proof that multiplication is a function. In other words, if `m1 = m2`, then `m * m1 = m * m2` for any `m`. This could be useful if you want to use calc blocks later on."
+Introduction "
+Let's start with rewriting. If `m1 = m2`, multiplying both by the same element
+on the left should give the same result. Prove this using `rw`.
+"
 
 /--
 `mul_left` is a proof that if `m1 = m2`, then `m * m1 = m * m2` - basically `m * _` is a function.
@@ -21,8 +24,7 @@ Statement mul_left {M} (m : M) {m1 m2 : M} [Monoid M] : m1 = m2 → m * m1 = m *
   Hint "Now, use `rw` to rewrite the goal using the hypothesis `{h}`."
   rw [h]
 
-
-Conclusion "Congrats on your first proof! Now let's move on to the next level."
+Conclusion "Congrats!"
 
 section Basic_Tactics
 /--
@@ -46,36 +48,30 @@ TacticDoc intro
 -/
 TacticDoc apply
 
-
 /--
 `have q : r := p` will add a new hypothesis called `q` with type `r` to the local context. It will need a proof `p`. Where you can use `by` to start a proof.
 -/
 TacticDoc «have»
-
 
 /--
 `obtain ⟨x, y, z⟩ := h` will destructure `h` into the variables `x`, `y`, and `z`. This is useful for when you have a hypothesis that is a tuple or a structure. You can type `⟨` using `\langle` and `⟩` using `\rangle`.
 -/
 TacticDoc obtain
 
-
 /--
 `calc` is a way to chain equalities together. It's a bit like `rw`, but you can see the whole chain of reasoning.
 -/
 TacticDoc «calc»
-
 
 /--
 `exact h` will close the goal if `h` is a proof of the goal.
 -/
 TacticDoc exact
 
-
 /--
 `simp` rewrites using known simplification rules. Use `simp only [h₁, h₂]` to choose the rules explicitly.
 -/
 TacticDoc simp
-
 
 /--
 `repeat t` repeatedly applies the tactic `t` to the goal. You don't need to use this tactic, it just speeds things up sometimes.
@@ -145,4 +141,12 @@ TheoremDoc And.right as "And.right" in "Basic"
 -/
 TheoremDoc And.intro as "And.intro" in "Basic"
 
+
+/-- `add_zero a` is the additive identity law `a + 0 = a`. -/
+TheoremDoc add_zero as "add_zero" in "Monoid"
+/-- `zero_add a` is the additive identity law `0 + a = a`. -/
+TheoremDoc zero_add as "zero_add" in "Monoid"
 NewTheorem mul_one one_mul MyAlgebra.Semigroup.mul_assoc And.left And.right And.intro Iff.intro
+  add_zero zero_add
+
+end MyAlgebra

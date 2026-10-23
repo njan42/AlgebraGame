@@ -7,18 +7,15 @@ World "Monoid"
 Title "Monoid World"
 
 Introduction "
-  A monoid consists of a set M together with a binary operation (`*`) satisfying the following axioms:
-  #### Identity Axiom
-  There is an element `1 ∈ M` such that
+A monoid has a multiplication `*` and an identity `1`.
+The operation is associative:
 
-    - one_mul : ∀ m : M, 1 * m = m
-    - mul_one : ∀ m : M, m * 1 = m
+- `mul_assoc`: `(a * b) * c = a * (b * c)`
+- `one_mul`: `1 * a = a`
+- `mul_one`: `a * 1 = a`
 
-  The element 1 is called the identity element of M.
-
-  #### Associative Law
-  For all `m1, m2, m3 ∈ M`, the associative law holds:
-
-    - mul_assoc : ∀ m1 m2 m3 : M, (m1 * m2) * m3 = m1 * (m2 * m3)
-
+The natural numbers form a monoid under addition, with identity `0`,
+and under multiplication, with identity `1`. For additive notation,
+the identity laws are called `zero_add` and `add_zero`.
+A monoid may not necessarily have inverses or cancellation.
 "

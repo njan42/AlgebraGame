@@ -7,33 +7,36 @@ Title "Multiplying Integer Exponents"
 
 namespace MyAlgebra
 
-Introduction "Finally, we prove the multiplication law for integer exponents:
-`g ^ (x * y) = (g ^ x) ^ y`."
+Introduction "
+Prove the power-of-a-power law for integer exponents.
+Use integer induction on the outer exponent, with the addition and subtraction laws.
+"
 
-/--
-For any group element `g` and integers `x`, `y`,
-we have `g ^ (x * y) = (g ^ x) ^ y`.
--/
+/-- `gpow_mul g x y` states `g ^ (x * y) = (g ^ x) ^ y`. -/
 TheoremDoc MyAlgebra.gpow_mul as "gpow_mul" in "Group Power"
-Statement gpow_mul {G} [Group G] (g : G) (x y : ℤ) :
+Statement gpow_mul {G : Type} [Group G] (g : G) (x y : ℤ) :
     g ^ (x * y) = (g ^ x) ^ y := by
-  Hint "Use `Int.induction_on` on `y` as in earlier levels."
-  induction y using Int.induction_on with
+  induction y using integer_induction with
   | zero =>
-    Hint "Start with `y = 0`."
-    -- x * 0 = 0, and (g^x)^0 = 1
-    simp
-  | succ n ih =>
-    Hint "Use the identity `x * (n+1) = x * n + x` and the addition lemma for powers."
-    -- y = n+1
-    -- g^(x*(n+1)) = g^(x*n + x) = g^(x*n) * g^x
-    -- (g^x)^(n+1) = (g^x)^n * g^x
-    rw [Int.mul_add, Int.mul_one, ←gpow_add, gpow_succ, ih]
-  | pred n ih =>
-    Hint "For the negative step, use `Int.mul_sub` and your subtraction lemma `gpow_sub`."
-    -- y = -[n+1]
-    -- x * (-(n+1)) = x * (-n) - x
-    -- use `gpow_sub` and `gpow_pred` to step down
-    rw [Int.mul_sub, Int.mul_one, ←gpow_sub, ←gpow_pred, ih]
+    Hint "`Int.mul_zero x` simplifies `x * 0`."
+    rw [Int.mul_zero, gpow_zero, gpow_zero]
+  | succ y ih =>
+    Hint "`Int.mul_add x y 1` expands `x * (y + 1)`; `Int.mul_one x` simplifies `x * 1`."
+    rw [Int.mul_add, Int.mul_one, ← gpow_add, gpow_succ, ih]
+  | pred y ih =>
+    Hint "`Int.mul_sub x y 1` expands `x * (y - 1)`; then use the power subtraction law."
+    rw [Int.mul_sub, Int.mul_one, ← gpow_sub, ← gpow_pred, ih]
 
-Conclusion "Excellent! You’ve proved the full multiplication law for integer exponents."
+/-- `Int.mul_zero n` states `n * 0 = 0`. -/
+TheoremDoc Int.mul_zero as "Int.mul_zero" in "Int"
+/-- `Int.mul_one n` states `n * 1 = n`. -/
+TheoremDoc Int.mul_one as "Int.mul_one" in "Int"
+/-- `Int.mul_add a b c` states `a * (b + c) = a * b + a * c`. -/
+TheoremDoc Int.mul_add as "Int.mul_add" in "Int"
+/-- `Int.mul_sub a b c` states `a * (b - c) = a * b - a * c`. -/
+TheoremDoc Int.mul_sub as "Int.mul_sub" in "Int"
+NewTheorem Int.mul_zero Int.mul_one Int.mul_add Int.mul_sub
+
+Conclusion "Congrats!"
+
+end MyAlgebra

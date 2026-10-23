@@ -3,27 +3,20 @@ import Game.Levels.PowMonoid.L05_PowId
 World "Monoid Power"
 Level 6
 
-Title "Commuting a Power with its Base"
+Title "Commuting a Power with Its Base"
 
 namespace MyAlgebra
 
-Introduction "In a general monoid, `m` need not commute with all elements, but
-it does commute with its own powers. You’ll prove `m ^ x * m = m * m ^ x`."
+Introduction "
+An element may not necessarily commute with every element of a monoid.
+Does it commute with its own powers? Compare the two rules for `m ^ (n + 1)`.
+"
 
-/--
-For any `m` in a monoid and `x : ℕ`,
-`m ^ x * m = m * m ^ x`.
--/
-TheoremDoc MyAlgebra.mpow_comm_mul as "mpow_comm_mul" in "Monoid"
-Statement mpow_comm_mul {M} [Monoid M] (m : M) (x : ℕ) :
-  (m ^ x) * m = m * (m ^ x) := by
-  induction x with
-  | zero =>
-    Hint "Start with `x = 0`."
-    rw [mpow_zero, one_mul, mul_one]
-  | succ x ih =>
-    Hint "Rewrite `m^(x+1)` and use associativity plus the induction hypothesis."
-    nth_rw 1 [mpow_succ_left, mpow_succ_right]
-    simp [ih, mul_assoc]
+/-- A power commutes with its base: `m ^ n * m = m * m ^ n`. -/
+TheoremDoc MyAlgebra.mpow_comm_mul as "mpow_comm_mul" in "Monoid Power"
+Statement mpow_comm_mul {M : Type} [Monoid M] (m : M) (n : ℕ) : m ^ n * m = m * m ^ n := by
+  rw [← mpow_succ_right, mpow_succ_left]
 
-Conclusion "Great!"
+Conclusion "Congrats!"
+
+end MyAlgebra

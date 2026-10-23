@@ -8,13 +8,13 @@ Title "The Identity Function is a Homomorphism"
 namespace MyAlgebra
 
 Introduction "
-  Let's check out an example of a homomorphism. Here's a simple one: the identity function.
+The identity function sends each element to itself.
+Check that it preserves multiplication.
 "
-
 
 Statement {G : Type} [Group G] : ∀ a b : G, id (a * b) = id (a) * id (b)  := by
   intro a b
-  Hint "`rfl` automatically solves this case, but you can also use `rw [id]`"
+  Hint "What does the identity function return? Compare the expressions on the two sides."
   Branch
     rfl
   rw [id]
@@ -29,3 +29,5 @@ Conclusion "Congrats!"
 DefinitionDoc id as "id" in "GroupHom"
 
 NewDefinition id
+
+end MyAlgebra

@@ -7,26 +7,29 @@ Title "Adding Exponents"
 
 namespace MyAlgebra
 
-Introduction "Now we prove the fundamental law of exponents in a monoid:
-`m ^ (x + y) = m ^ x * m ^ y`."
+Introduction "
+Prove the addition law for natural exponents.
+What happens when one more factor is added to the second power?
+"
 
-/--
-For any `m` in a monoid and natural numbers `x`, `y`, we have `m ^ (x + y) = m ^ x * m ^ y`.
--/
+/-- `mpow_add m x y` states `m ^ (x + y) = m ^ x * m ^ y`. -/
 TheoremDoc MyAlgebra.mpow_add as "mpow_add" in "Monoid Power"
-Statement mpow_add {M} [Monoid M] (m : M) (x y : ℕ) :
-  m ^ (x + y) = (m ^ x) * (m ^ y) := by
+Statement mpow_add {M : Type} [Monoid M] (m : M) (x y : ℕ) :
+    m ^ (x + y) = m ^ x * m ^ y := by
   induction y with
   | zero =>
-    Hint "Start with `y = 0`."
-    -- m^(x+0) = m^x and m^x * m^0 = m^x * 1
-    simp [mpow_zero]
+    Hint "`Nat.add_zero x` simplifies `x + 0`."
+    rw [Nat.add_zero, mpow_zero, mul_one]
   | succ y ih =>
-    Hint "Use the recursive definition of pow and the induction hypothesis."
-    -- m^(x + (y+1)) = m^(x + y + 1) = m^(x+y)*m
-    -- and (m^x * m^y) * m = m^x * (m^y * m)
-    rw [Nat.add_succ, mpow_succ_right, ih]
-    rw [mpow_succ_right]
-    rw [mul_assoc]
+    Hint "`Nat.add_succ x y` rewrites `x + (y + 1)` as `(x + y) + 1`."
+    rw [Nat.add_succ, mpow_succ_right, ih, mpow_succ_right, mul_assoc]
 
-Conclusion "Awesome! You have the exponent law for addition"
+/-- `Nat.add_zero n` states `n + 0 = n`. -/
+TheoremDoc Nat.add_zero as "Nat.add_zero" in "Nat"
+/-- `Nat.add_succ x y` states `x + (y + 1) = (x + y) + 1`. -/
+TheoremDoc Nat.add_succ as "Nat.add_succ" in "Nat"
+NewTheorem Nat.add_zero Nat.add_succ
+
+Conclusion "Congrats!"
+
+end MyAlgebra

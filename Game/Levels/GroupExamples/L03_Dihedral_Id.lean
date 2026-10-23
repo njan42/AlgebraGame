@@ -1,81 +1,73 @@
-import Game.MyAlgebra.Dihedral
 import Game.Levels.GroupExamples.L02_Z_mod_mZ_Inv
-
-open MyAlgebra
-
+import Game.MyAlgebra.Dihedral
 
 World "Group Examples"
 Level 3
 
-Title "Dihedral Group Identity"
+Title "The Identity Symmetry"
 
 namespace MyAlgebra
-
-Introduction "
-  We can consider n-gons and their symmetries, which form a group called the dihedral group. The dihedral group of order 2n, denoted D_n, consists of n rotations and n reflections.
-
-  Here is a square with its vertices labeled (1,2,3,4) and its symmetries (rotations and reflections):
-
-    1-----2
-    |     |
-    4-----3
-
-  Rotations:
-    0° (identity)      90°                180°               270°
-    1-----2            4-----1            3-----4            2-----3
-    |     |            |     |            |     |            |     |
-    4-----3            3-----2            2-----1            1-----4
-
-  Reflections:
-    Vertical           Horizontal         Diagonal (\\)        Diagonal (/)
-    2-----1            4-----3            1-----4             3-----2
-    |     |            |     |            |     |             |     |
-    3-----4            1-----2            2-----3             4-----1
-
-  Each symmetry is an element of the dihedral group D₄.
-
-
-  We define the dihedral group D_n as follows:
-  ```
-  inductive Dihedral (n : ℕ) : Type
-    | r : ZMod n → Dihedral n
-    | sr : ZMod n → Dihedral n
-  ```
-  The elements of D_n are either rotations (`r i`) or reflections (`sr i`), where i is an integer modulo n. `r` stands for rotation and `s` stands for reflection.
-
-  In this level, we will prove that the identity element of the dihedral group D_n is the identity rotation, which does not change the polygon.
-"
-
 namespace Dihedral
 
-variable {n : ℕ}
+Introduction "
+The dihedral group describes rotations and reflections of a regular polygon.
+For `n ≥ 3`, it has `n` rotations and `n` reflections.
 
-/--
-`Dihedral_id` is a proof that the identity element of the dihedral group `D_n` is `r 0`.
--/
+For example, a square has eight symmetries:
+```
+1-----2
+|     |
+4-----3
+```
+
+`r i` is a rotation and `sr i` is a reflection, with `i : ZMod n`.
+The four multiplication rules are in the inventory as `r_mul_r`, `r_mul_sr`,
+`sr_mul_r`, and `sr_mul_sr`. Multiplication means composition of symmetries.
+
+Which symmetry changes nothing? Find it and check both identity products.
+Use `cases a with | r i => ... | sr i => ...` to consider each kind of symmetry.
+"
+
+/-- The Identity Symmetry. -/
 TheoremDoc MyAlgebra.Dihedral.Dihedral_id as "Dihedral_id" in "Group Examples"
-Statement Dihedral_id (n : ℕ) (a : Dihedral n) : ∃ b : Dihedral n, mul a b = a ∧ mul b a = a := by
+Statement Dihedral_id (n : ℕ) (a : Dihedral n) :
+    ∃ b : Dihedral n, a * b = a ∧ b * a = a := by
   use r 0
-  Hint "Use the definition of multiplication in the dihedral group."
   cases a with
-  | r i => simp [mul]
-  | sr i => simp [mul]
+  | r i =>
+    Hint "The rule `r_mul_r` reduces a product of rotations to addition in `ZMod n`."
+    constructor
+    · rw [r_mul_r, add_zero]
+    · rw [r_mul_r, zero_add]
+  | sr i =>
+    Hint "Use `sr_mul_r` and `r_mul_sr` for the mixed products.
+    Mathlib's `sub_zero i` simplifies `i - 0`."
+    constructor
+    · rw [sr_mul_r, add_zero]
+    · rw [r_mul_sr, sub_zero]
+
+/-- `r i` is the rotation with index `i`. -/
+DefinitionDoc MyAlgebra.Dihedral.r as "r" in "Group Examples"
+/-- `sr i` is the reflection with index `i`. -/
+DefinitionDoc MyAlgebra.Dihedral.sr as "sr" in "Group Examples"
+/-- `r i * r j = r (i + j)`. -/
+TheoremDoc MyAlgebra.Dihedral.r_mul_r as "r_mul_r" in "Group Examples"
+/-- `r i * sr j = sr (j - i)`. -/
+TheoremDoc MyAlgebra.Dihedral.r_mul_sr as "r_mul_sr" in "Group Examples"
+/-- `sr i * r j = sr (i + j)`. -/
+TheoremDoc MyAlgebra.Dihedral.sr_mul_r as "sr_mul_r" in "Group Examples"
+/-- `sr i * sr j = r (j - i)`. -/
+TheoremDoc MyAlgebra.Dihedral.sr_mul_sr as "sr_mul_sr" in "Group Examples"
+/-- `sub_zero a` states `a - 0 = a`. -/
+TheoremDoc sub_zero as "sub_zero" in "Group Examples"
+/-- `cases a with | r i => ... | sr i => ...` considers the two kinds of symmetry. -/
+TacticDoc «cases»
+NewDefinition MyAlgebra.Dihedral.r MyAlgebra.Dihedral.sr
+NewTheorem MyAlgebra.Dihedral.r_mul_r MyAlgebra.Dihedral.r_mul_sr
+  MyAlgebra.Dihedral.sr_mul_r MyAlgebra.Dihedral.sr_mul_sr sub_zero
+NewTactic «cases»
 
 Conclusion "Congrats!"
 
-/--
-`sr i` represents a reflection element in the dihedral group `D_n`, where `i` is an integer modulo `n`.
--/
-DefinitionDoc MyAlgebra.Dihedral.sr as "sr" in "Group Examples"
-
-/--
-`r i` represents a rotation element in the dihedral group `D_n`, where `i` is an integer modulo `n`.
--/
-DefinitionDoc MyAlgebra.Dihedral.r as "r" in "Group Examples"
-
-/--
-`mul a b` represents the multiplication of elements `a` and `b` in the dihedral group.
--/
-DefinitionDoc MyAlgebra.Dihedral.mul as "Dihedral.mul" in "Group Examples"
-
-NewDefinition MyAlgebra.Dihedral.sr MyAlgebra.Dihedral.r MyAlgebra.Dihedral.mul
+end Dihedral
+end MyAlgebra

@@ -7,10 +7,12 @@ Title "Right Multiplication"
 
 namespace MyAlgebra
 
-Introduction "Here's a dual of that last level."
+Introduction "
+Now multiply on the right instead. The same rewriting argument should work.
+"
 
 /--
-`mul_right` is a proof that if `m1 = m2`, then `m1 * m = m2 * m` - based on `_ * m` is a well defined function.
+`mul_right m` preserves equality when both elements are multiplied on the right by `m`.
 -/
 TheoremDoc MyAlgebra.mul_right as "mul_right" in "Monoid"
 @[to_additive]
@@ -18,5 +20,6 @@ Statement mul_right {M} (m : M) {m1 m2 : M} [Monoid M] : m1 = m2 → m1 * m = m2
   intro h
   rw [h]
 
+Conclusion "Congrats!"
 
-Conclusion "Don't worry it's going to get a bit more challenging (and a lot more fun)!"
+end MyAlgebra

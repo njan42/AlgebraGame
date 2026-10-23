@@ -3,29 +3,28 @@ import Game.Levels.PowMonoid.L06_PowCommMul
 World "Monoid Power"
 Level 7
 
-Title "Powers Commute with Powers"
+Title "Powers of One Element Commute"
 
 namespace MyAlgebra
 
-Introduction "Finally, you will prove the full statement:
-`m ^ x * m ^ y = m ^ y * m ^ x`. We already know `m^x` commutes with `m`,
-so we use induction to extend this to all powers."
+Introduction "
+We know that `m` commutes with its own powers.
+Show that any two powers of this same element commute with each other.
+"
 
-/--
-For any `m` in a monoid and naturals `x`, `y`,
-`m ^ x * m ^ y = m ^ y * m ^ x`.
--/
+/-- Powers of the same element commute with each other. -/
 TheoremDoc MyAlgebra.mpow_comm_mpow as "mpow_comm_mpow" in "Monoid Power"
-Statement mpow_comm_mpow {M} [Monoid M] (m : M) (x y : ℕ) :
-  (m ^ x) * (m ^ y) = (m ^ y) * (m ^ x) := by
-  induction y with
-  | zero => rw [mpow_zero, mul_one, one_mul]
-  | succ y ih =>
-    rw [mpow_succ_left]
-    rw [mul_assoc]
-    rw [← ih]
-    rw [← mul_assoc m _ _]
-    rw [← mul_assoc _ m _]
-    rw [mpow_comm_mul]
+Statement mpow_comm_mpow {M : Type} [Monoid M] (m : M) (x y : ℕ) :
+    m ^ x * m ^ y = m ^ y * m ^ x := by
+  Hint "What happens to the exponents when powers of the same element are multiplied?
+  `Nat.add_comm x y` exchanges `x + y` and `y + x`."
+  rw [← mpow_add, ← mpow_add, Nat.add_comm]
 
-Conclusion "Excellent work! You’ve proven a general version of the previous level - that all powers of an element commute with each other."
+/-- `Nat.add_comm x y` states `x + y = y + x`. -/
+TheoremDoc Nat.add_comm as "Nat.add_comm" in "Nat"
+NewTheorem Nat.add_comm
+
+
+Conclusion "Congrats! Powers of one element commute, even in a noncommutative monoid."
+
+end MyAlgebra

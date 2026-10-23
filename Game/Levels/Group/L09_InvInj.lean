@@ -1,4 +1,4 @@
-import Game.Levels.Group.L07_InvId
+import Game.Levels.Group.L08_InvInv
 
 World "Group"
 Level 9
@@ -8,7 +8,8 @@ Title "Inverse is Injective"
 namespace MyAlgebra
 
 Introduction "
-  Since the inverse of an inverse to be the original element it follows that if two elements have the same inverse, they must be equal.
+If two elements have the same inverse, can the original elements be different?
+Prove both directions of the equivalence.
 "
 
 /--
@@ -17,16 +18,15 @@ Introduction "
 TheoremDoc MyAlgebra.inv_inj as "inv_inj" in "Group"
 @[to_additive]
 Statement inv_inj {G} (a b : G) [Group G] : a⁻¹ = b⁻¹ ↔ a = b := by
-  apply Iff.intro
+  constructor
   · intro h
-    calc a = a := by rfl
-      _ = a * 1 := by rw [mul_one]
-      _ = a * (b⁻¹ * b) := by rw [inv_mul]
-      _ = (a * b⁻¹) * b := by rw [mul_assoc]
-      _ = (a * a⁻¹) * b := by rw [← h]
-      _ = 1 * b := by rw [mul_inv]
-      _ = b := by rw [one_mul]
+    calc
+      a = a⁻¹⁻¹ := inv_inv a
+      _ = b⁻¹⁻¹ := by rw [h]
+      _ = b := by rw [← inv_inv]
   · intro h
     rw [h]
 
 Conclusion "Congrats!"
+
+end MyAlgebra

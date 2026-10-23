@@ -3,35 +3,32 @@ import Game.Levels.PowGroup.L05_PowAdd
 World "Group Power"
 Level 6
 
-Title "Negating the Exponent"
+Title "Negating an Exponent"
 
 namespace MyAlgebra
 
-Introduction "You’ve seen that negative naturals correspond to inverses.
-Now you’ll prove the full statement: `g ^ (-n) = (g ^ n)⁻¹` for any integer `n`."
+Introduction "
+We now have the addition law for arbitrary integers.
+What happens when the two exponents add to zero?
+Use the inverse uniqueness result to identify the power with exponent `-n`.
+"
 
-/--
-For any group element `g` and integer `n`,
-`g ^ (-n) = (g ^ n)⁻¹`.
--/
+/-- `gpow_neg g n` states `g ^ (-n) = (g ^ n)⁻¹`. -/
 TheoremDoc MyAlgebra.gpow_neg as "gpow_neg" in "Group Power"
-Statement gpow_neg {G} [Group G] (g : G) (n : ℤ) :
-  g ^ (-n) = (g ^ n)⁻¹ := by
-  Hint "Use `Int.induction_on` on `n`."
-  induction n using Int.induction_on with
-  | zero =>
-    -- n = 0
-    simp [gpow_zero, ←inv_id]
-  | succ n ih =>
-    Hint "Relate `-(n+1)` to `-n - 1` and use `gpow_pred`."
-    rw [Int.neg_add, ←Int.sub_eq_add_neg, ←gpow_pred, ih, inv_anticomm, ←Int.add_comm]
-    rw [←gpow_add]
-    rw [gpow_one]
-  | pred n ih =>
-    Hint "Use the case for a natural number via `gpow_neg_mpow` and your previous lemma."
-    simp at *
-    rw [Int.add_comm, gpow_succ, ih, ←gpow_pred, gpow_neg_mpow, inv_anticomm]
-    repeat rw [← inv_inv]
-    rw [← mpow_succ_right, mpow_succ_left]
+Statement gpow_neg {G : Type} [Group G] (g : G) (n : ℤ) : g ^ (-n) = (g ^ n)⁻¹ := by
+  apply inv_unique (g ^ n)
+  constructor
+  · Hint "`Int.add_right_neg n` states `n + (-n) = 0`."
+    rw [gpow_add, Int.add_right_neg, gpow_zero]
+  · Hint "`Int.add_left_neg n` states `-n + n = 0`."
+    rw [gpow_add, Int.add_left_neg, gpow_zero]
 
-Conclusion "Nice! You’ve fully connected negative integer exponents with group inverses."
+/-- `Int.add_right_neg n` states `n + (-n) = 0`. -/
+TheoremDoc Int.add_right_neg as "Int.add_right_neg" in "Int"
+/-- `Int.add_left_neg n` states `-n + n = 0`. -/
+TheoremDoc Int.add_left_neg as "Int.add_left_neg" in "Int"
+NewTheorem Int.add_right_neg Int.add_left_neg
+
+Conclusion "Congrats!"
+
+end MyAlgebra

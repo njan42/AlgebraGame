@@ -7,20 +7,18 @@ Title "Powers of the Identity"
 
 namespace MyAlgebra
 
-Introduction "Now show that the identity element is fixed under taking powers:
-`1 ^ x = 1`."
+Introduction "
+What happens when every factor in a power is the identity?
+Prove that `1 ^ n = 1` for every natural number `n`.
+"
 
-/--
-For any monoid, `1 ^ x = 1` for all `x : ℕ`.
--/
+/-- `mpow_id n` states `(1 : M) ^ n = 1`. -/
 TheoremDoc MyAlgebra.mpow_id as "mpow_id" in "Monoid Power"
-Statement mpow_id {M} [Monoid M] (x : ℕ) : (1 : M) ^ x = 1 := by
-  induction x with
-  | zero =>
-    Hint "What is `1^0` by definition?"
-    rw [mpow_zero]
-  | succ x ih =>
-    Hint "Use the recursive definition of pow and the fact that `1 * 1 = 1`."
-    rw [mpow_succ_right, ih, mul_one]
+Statement mpow_id {M : Type} [Monoid M] (n : ℕ) : (1 : M) ^ n = 1 := by
+  induction n with
+  | zero => rw [mpow_zero]
+  | succ n ih => rw [mpow_succ_right, ih, mul_one]
 
-Conclusion "Nice! Identity behaves as expected under exponentiation."
+Conclusion "Congrats!"
+
+end MyAlgebra
