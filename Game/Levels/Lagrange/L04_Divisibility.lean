@@ -25,10 +25,6 @@ Statement subgroup_card_dvd {G : Type} [Group G] [Finite G] (H : Subgroup G)
   Hint "Use `lagrange_card_formula`, then use `Nat.mul_comm` to commute the natural-number factors."
   rw [lagrange_card_formula H, Nat.mul_comm]
 
-/-- `Nat.mul_comm a b` states `a * b = b * a` for natural numbers. -/
-TheoremDoc Nat.mul_comm as "Nat.mul_comm" in "Counting"
-NewTheorem Nat.mul_comm
-
 Conclusion "A subgroup of a group with twelve elements can only have size dividing twelve:
 1, 2, 3, 4, 6, or 12."
 

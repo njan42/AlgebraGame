@@ -146,7 +146,9 @@ TheoremDoc And.intro as "And.intro" in "Basic"
 TheoremDoc add_zero as "add_zero" in "Monoid"
 /-- `zero_add a` is the additive identity law `0 + a = a`. -/
 TheoremDoc zero_add as "zero_add" in "Monoid"
+/-- `Nat.mul_comm a b` states `a * b = b * a` for natural numbers. -/
+TheoremDoc Nat.mul_comm as "Nat.mul_comm" in "Nat"
 NewTheorem mul_one one_mul MyAlgebra.Semigroup.mul_assoc And.left And.right And.intro Iff.intro
-  add_zero zero_add
+  add_zero zero_add Nat.mul_comm
 
 end MyAlgebra

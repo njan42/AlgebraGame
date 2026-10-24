@@ -12,6 +12,7 @@ import Game.Levels.Lagrange
 import Game.Levels.Normal
 import Game.Levels.Ring
 import Game.Levels.GroupExamples
+import Game.Levels.Order
 
 
 -- Here's what we'll put on the title screen
@@ -47,6 +48,9 @@ Dependency Group → «Group Examples»
 -- Sets then prepares subgroups and the two branches studying maps and cosets.
 Dependency Group → Functions → GroupHom → Sets → Subgroups → KernelImage
 Dependency Subgroups → Cosets → Lagrange
+Dependency «Group Power» → Order
+Dependency «Group Examples» → Order
+Dependency Functions → Order
 
 /-! Build the game. Show's warnings if it found a problem with your game. -/
 Dependency Cosets → Normal
