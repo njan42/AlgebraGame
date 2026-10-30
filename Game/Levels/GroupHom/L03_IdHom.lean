@@ -3,7 +3,7 @@ import Game.Levels.GroupHom.L02_HomPreservesInv
 World "GroupHom"
 Level 3
 
-Title "The Identity Function is a Homomorphism"
+Title "The Identity Function Is a Homomorphism"
 
 namespace MyAlgebra
 

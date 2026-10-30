@@ -1,7 +1,7 @@
-import Game.Levels.PowGroup.L05_PowAdd
+import Game.Levels.PowGroup.L04_PowAdd
 
 World "Group Power"
-Level 6
+Level 5
 
 Title "Negating an Exponent"
 

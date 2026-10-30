@@ -1,11 +1,10 @@
 import Game.Levels.PowGroup.L01_PowNegNat
 import Game.Levels.PowGroup.L02_PowNegOne
-import Game.Levels.PowGroup.L03_PowSucc
-import Game.Levels.PowGroup.L04_PowPred
-import Game.Levels.PowGroup.L05_PowAdd
-import Game.Levels.PowGroup.L06_PowNeg
-import Game.Levels.PowGroup.L07_PowSub
-import Game.Levels.PowGroup.L08_PowMul
+import Game.Levels.PowGroup.L03_PowPred
+import Game.Levels.PowGroup.L04_PowAdd
+import Game.Levels.PowGroup.L05_PowNeg
+import Game.Levels.PowGroup.L06_PowSub
+import Game.Levels.PowGroup.L07_PowMul
 
 
 

@@ -1,7 +1,7 @@
-import Game.Levels.PowGroup.L04_PowPred
+import Game.Levels.PowGroup.L03_PowPred
 
 World "Group Power"
-Level 5
+Level 4
 
 Title "Adding Integer Exponents"
 

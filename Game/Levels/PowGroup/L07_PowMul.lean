@@ -1,7 +1,7 @@
-import Game.Levels.PowGroup.L07_PowSub
+import Game.Levels.PowGroup.L06_PowSub
 
 World "Group Power"
-Level 8
+Level 7
 
 Title "Multiplying Integer Exponents"
 

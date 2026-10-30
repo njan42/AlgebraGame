@@ -13,10 +13,8 @@ Their composite sends `x` to `f2 (f1 x)`.
 Does it preserve multiplication? Build a `GroupHom G J` for this composite.
 "
 
-/--
-`hom_comp_hom` is a proof that composition of homomorphisms is also a homomorphism.
--/
-TheoremDoc MyAlgebra.hom_comp_hom as "hom_comp_hom" in "Group"
+/-- Composition constructs a homomorphism by applying `f` and then `g`. -/
+TheoremDoc MyAlgebra.hom_comp_hom as "hom_comp_hom" in "GroupHom"
 /-- `hom_comp_hom f g` constructs the homomorphism sending `x` to `g (f x)`. -/
 DefinitionDoc MyAlgebra.hom_comp_hom as "hom_comp_hom" in "GroupHom"
 Statement hom_comp_hom {G H J : Type} [Group G] [Group H] [Group J]

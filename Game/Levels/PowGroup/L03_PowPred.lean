@@ -1,7 +1,7 @@
-import Game.Levels.PowGroup.L03_PowSucc
+import Game.Levels.PowGroup.L02_PowNegOne
 
 World "Group Power"
-Level 4
+Level 3
 
 Title "Subtracting One from an Exponent"
 

@@ -1,7 +1,7 @@
-import Game.Levels.PowGroup.L06_PowNeg
+import Game.Levels.PowGroup.L05_PowNeg
 
 World "Group Power"
-Level 7
+Level 6
 
 Title "Subtracting Integer Exponents"
 

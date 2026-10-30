@@ -7,8 +7,7 @@ World "Group Examples"
 Title "Group Examples World"
 
 Introduction "
-Let's apply the group laws to two examples: modular addition and polygon symmetries.
-The first uses `+`, identity `0`, and additive inverses.
-The second uses `*` to compose rotations and reflections.
-We will check identities and inverses using the operations in each example.
+We will study addition modulo a number and the symmetries of a polygon.
+Modular addition uses `+`, identity `0`, and additive inverses.
+Polygon symmetries use `*` for composition.
 "

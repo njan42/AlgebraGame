@@ -15,44 +15,32 @@ import Game.Levels.GroupExamples
 import Game.Levels.Order
 
 
--- Here's what we'll put on the title screen
 Title "Algebra Game"
-Introduction
-"
+Introduction "
 # Welcome to the Algebra Game
-#### An introduction to algebraic structures.
 
-Explore abstract algebra through monoids, groups, functions, sets, subgroups,
-cosets, powers, homomorphisms, and rings.
-This game is a work in progress: the current worlds introduce group theory and the first ring laws.
+Learn about monoids, groups, and rings by proving their basic properties in Lean.
+The game also covers functions, sets, subgroups, cosets, and element orders.
 
-Start with the [Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/NNG4)
-to learn rewriting, implications, and induction. New algebra concepts are introduced as you play.
+This game assumes some experience with Lean. If you're new to Lean, start with the
+[Natural Number Game](https://adam.math.hhu.de/#/g/leanprover-community/NNG4).
 "
 
-Info "
-Built with Lean 4 and the Lean Game Server. This is an introductory course under development.
-"
+Info "An abstract algebra game built with Lean 4 and the Lean Game Server."
 
-/-! Information to be displayed on the servers landing page. -/
 Languages "English"
 CaptionShort "Introduction to basic algebra"
-CaptionLong "An introduction to abstract algebra after the Natural Number Game. Explore monoids, groups, functions, homomorphisms, sets, subgroups, powers, examples, and initial ring laws."
--- Prerequisites "" -- add this if your game depends on other games
--- CoverImage "images/cover.png"
+CaptionLong "Prove basic results about monoids, groups, functions, subgroups, cosets, and rings in Lean."
 
--- Ring proofs use the additive versions of cancellation learned in Group.
+-- World prerequisites.
 Dependency Group → Ring
 Dependency Group → «Group Examples»
--- Functions prepares the notation and proof techniques used by homomorphisms.
--- Sets then prepares subgroups and the two branches studying maps and cosets.
 Dependency Group → Functions → GroupHom → Sets → Subgroups → KernelImage
 Dependency Subgroups → Cosets → Lagrange
 Dependency «Group Power» → Order
 Dependency «Group Examples» → Order
 Dependency Functions → Order
 
-/-! Build the game. Show's warnings if it found a problem with your game. -/
 Dependency Cosets → Normal
 Dependency KernelImage → Normal
 

@@ -34,6 +34,12 @@ Statement Z_mod_mZ_id (m : ℕ) (a : ZMod m) : 0 + a = a ∧ a + 0 = a := by
 DefinitionDoc ZMod as "ZMod" in "Group Examples"
 NewDefinition ZMod
 
+/-- `add_zero a` is the additive identity law `a + 0 = a`. -/
+TheoremDoc add_zero as "add_zero" in "Group Examples"
+/-- `zero_add a` is the additive identity law `0 + a = a`. -/
+TheoremDoc zero_add as "zero_add" in "Group Examples"
+NewTheorem add_zero zero_add
+
 Conclusion "Congrats!"
 
 end MyAlgebra

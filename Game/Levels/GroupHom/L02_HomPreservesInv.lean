@@ -3,19 +3,19 @@ import Game.Levels.GroupHom.L01_HomPreservesOne
 World "GroupHom"
 Level 2
 
-Title "Homomorphisms preserve inverses"
+Title "Homomorphisms Preserve Inverses"
 
 namespace MyAlgebra
 
 Introduction "
 Does a multiplication-preserving map also preserve inverses?
-Consider the image of `a * a⁻¹`, and use the identity result from the last level.
+Consider the image of `a * a⁻¹`, and use preservation of the identity.
 "
 
 /--
 `hom_preserves_inv` is a proof that a homomorphism preserves inverses.
 -/
-TheoremDoc MyAlgebra.hom_preserves_inv as "hom_preserves_inv" in "Group"
+TheoremDoc MyAlgebra.hom_preserves_inv as "hom_preserves_inv" in "GroupHom"
 Statement hom_preserves_inv {G H : Type} [Group G] [Group H]
     (f : GroupHom G H) {a : G} : (f a)⁻¹ = f a⁻¹ := by
   Hint "`f.hom a a⁻¹` relates the product of the two images to the image of their product."

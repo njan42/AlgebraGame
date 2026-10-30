@@ -46,6 +46,11 @@ theorem zero_mul {R} [Ring R] (a : R) : 0 * a = 0 := by
   rw [← h]
   rw [add_zero]
 
+/-- `add_zero a` is the additive identity law `a + 0 = a`. -/
+TheoremDoc add_zero as "add_zero" in "Ring"
+/-- `zero_add a` is the additive identity law `0 + a = a`. -/
+TheoremDoc zero_add as "zero_add" in "Ring"
+
 Conclusion "Congrats! The same argument proves `0 * a = 0`; that result is also in the inventory."
 
 section Ring_Axioms
@@ -69,7 +74,7 @@ This is the additive version of right cancellation in a group. -/
 TheoremDoc MyAlgebra.add_right_cancel as "add_right_cancel" in "Ring"
 end Ring_Axioms
 
-NewTheorem MyAlgebra.AddGroup.neg_add MyAlgebra.AddGroup.add_neg MyAlgebra.AddSemigroup.add_assoc
+NewTheorem add_zero zero_add MyAlgebra.AddGroup.neg_add MyAlgebra.AddGroup.add_neg MyAlgebra.AddSemigroup.add_assoc
   MyAlgebra.AddCommGroup.add_comm MyAlgebra.Ring.distrib_right MyAlgebra.Ring.distrib_left
   MyAlgebra.zero_mul MyAlgebra.add_left_cancel MyAlgebra.add_right_cancel
 

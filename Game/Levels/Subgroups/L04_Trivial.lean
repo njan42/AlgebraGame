@@ -32,7 +32,7 @@ Statement trivial_isSubgroupSet {G : Type} [Group G] : IsSubgroupSet {x : G | x 
   · intro a ha
     change a = 1 at ha
     change a⁻¹ = 1
-    rw [ha, ← inv_id]
+    rw [ha, inv_one]
 
 /-- `IsSubgroupSet S` is the conjunction of identity, multiplication, and inverse closure. -/
 DefinitionDoc MyAlgebra.IsSubgroupSet as "IsSubgroupSet" in "Subgroups"

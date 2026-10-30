@@ -24,7 +24,8 @@ Statement left_mul_surjective {G : Type} [Group G] (g : G) :
   intro y
   Hint "Which input is sent to `{y}`? How can you undo left multiplication by `{g}`?"
   use g⁻¹ * y
-  Hint "Use `change` to express the function's value as a product."
+  Hint "Use `change` to express the function's value as a product. Make sure to remember the
+  parentheses."
   change g * (g⁻¹ * y) = y
   Hint "Regroup the product so `{g}` and its inverse are adjacent."
   rw [← mul_assoc, mul_inv, one_mul]

@@ -32,7 +32,7 @@ Statement kernel_isSubgroupSet {G H : Type} [Group G] [Group H] (f : GroupHom G 
     change f a⁻¹ = 1
     Hint "How does `hom_preserves_inv` relate the output of an inverse to the original output?
     What is the inverse of the identity?"
-    rw [← hom_preserves_inv f, ha, ← inv_id]
+    rw [← hom_preserves_inv f, ha, inv_one]
 
 Conclusion "The kernel is always a subgroup,
 even when the homomorphism is neither injective nor surjective."

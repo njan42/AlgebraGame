@@ -24,7 +24,7 @@ lemma gpow_negSucc (g : G) (n : ℕ) [Group G] :
 @[simp]
 lemma inv_mpow (g : G) (n : ℕ) [Group G] : (g ^ n)⁻¹ = (g⁻¹) ^ n := by
   induction n with
-  | zero => rw [mpow_zero, mpow_zero, ← inv_id]
+  | zero => rw [mpow_zero, mpow_zero, inv_one]
   | succ n ih =>
     rw [mpow_succ_right, ← inv_anticomm, ih, mpow_succ_left]
 

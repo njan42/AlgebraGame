@@ -3,7 +3,7 @@ import Game.Levels.Group.L08_InvInv
 World "Group"
 Level 9
 
-Title "Inverse is Injective"
+Title "Inversion Is Injective"
 
 namespace MyAlgebra
 
@@ -27,6 +27,6 @@ Statement inv_inj {G} (a b : G) [Group G] : a⁻¹ = b⁻¹ ↔ a = b := by
   · intro h
     rw [h]
 
-Conclusion "Congrats!"
+Conclusion "Taking inverses is injective. It is also surjective, since `y⁻¹` has inverse `y`."
 
 end MyAlgebra

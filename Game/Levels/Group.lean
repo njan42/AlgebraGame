@@ -2,9 +2,9 @@ import Game.Levels.Group.L01_MulInv
 import Game.Levels.Group.L02_CancelLeft
 import Game.Levels.Group.L03_CancelRight
 import Game.Levels.Group.L04_InvUnique
-import Game.Levels.Group.L05_CombinedInv
-import Game.Levels.Group.L06_CombinedInv2
-import Game.Levels.Group.L07_InvId
+import Game.Levels.Group.L05_InvOne
+import Game.Levels.Group.L06_CombinedInv
+import Game.Levels.Group.L07_CombinedInv2
 import Game.Levels.Group.L08_InvInv
 import Game.Levels.Group.L09_InvInj
 
@@ -15,6 +15,7 @@ Title "Group World"
 Introduction "
 A group is a monoid with an inverse `g⁻¹` for every element `g`.
 The monoid laws `mul_assoc`, `one_mul`, and `mul_one` still apply.
+They are in the Monoid inventory tab - you will use both the Monoid and Group tabs here.
 The inverse laws are:
 
 - `inv_mul`: `g⁻¹ * g = 1`

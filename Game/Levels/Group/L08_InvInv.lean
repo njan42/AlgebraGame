@@ -1,4 +1,4 @@
-import Game.Levels.Group.L07_InvId
+import Game.Levels.Group.L07_CombinedInv2
 
 World "Group"
 Level 8
@@ -10,7 +10,8 @@ namespace MyAlgebra
 Introduction "
 Taking an inverse twice should return the original element.
 
-Ex. `-(-2) = 2` or the composition of two flips is the identity.
+For example, `-(-2) = 2` for additive inverses, and applying the same reflection
+twice returns to the starting position.
 
 Show that `a` is the inverse of `a⁻¹`.
 "

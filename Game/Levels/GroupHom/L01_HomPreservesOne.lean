@@ -4,7 +4,7 @@ import Game.MyAlgebra.Group_Hom_Def
 World "GroupHom"
 Level 1
 
-Title "Homomorphisms preserve the identity"
+Title "Homomorphisms Preserve the Identity"
 
 namespace MyAlgebra
 
@@ -20,7 +20,7 @@ Does preserving multiplication force it to preserve the identity too?
 /--
 `hom_preserves_one` is a proof that a homomorphism preserves the identity element.
 -/
-TheoremDoc MyAlgebra.hom_preserves_one as "hom_preserves_one" in "Group"
+TheoremDoc MyAlgebra.hom_preserves_one as "hom_preserves_one" in "GroupHom"
 Statement hom_preserves_one {G H} [Group G] [Group H] (f : GroupHom G H) : f 1 = 1 := by
   Hint "`f.hom 1 1` describes the image of the product of two identity elements."
   have q := f.hom 1 1
@@ -31,6 +31,11 @@ Statement hom_preserves_one {G H} [Group G] [Group H] (f : GroupHom G H) : f 1 =
   Hint "Use the identity law and `{q}` to show that these products are equal."
   rw [one_mul]
   rw [←q]
+/-- `GroupHom G H` stores a function `toFun : G → H` and a proof `hom` that it
+preserves multiplication. Apply the function as `f a` and its law as `f.hom a b`. -/
+DefinitionDoc MyAlgebra.GroupHom as "GroupHom" in "GroupHom"
+NewDefinition MyAlgebra.GroupHom
+
 Conclusion "Congrats!"
 
 end MyAlgebra

@@ -1,24 +1,19 @@
-import Game.Levels.Group.L04_InvUnique
+import Game.Levels.Group.L05_InvOne
 
 World "Group"
-Level 5
+Level 6
 
 Title "Inverse of a Product"
 
 namespace MyAlgebra
 
 Introduction "
-What is the inverse of `g * h`?
-
-Our group has inverses of elements by definition but what about the inverse
-of the product of elements? Since products of elements are elements of the
-group, they should have inverses too.
-
-This exposes the anti-commutativity of the inverse operation.
+What is the inverse of `g * h`? It uses the inverses of both factors,
+but in which order?
 "
 
 /--
-`inv_anticomm g h` states `h⁻¹ * g⁻¹ = (g * h)⁻¹`: taking inverses reverses the order of it's
+`inv_anticomm g h` states `h⁻¹ * g⁻¹ = (g * h)⁻¹`: taking inverses reverses the order of its
 factors.
 -/
 TheoremDoc MyAlgebra.inv_anticomm as "inv_anticomm" in "Group"
